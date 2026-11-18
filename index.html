@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abhishek Kumar Agrahari | AI Engineer</title>
+<meta name="description" content="AI Engineer building computer vision and OCR pipelines that read engineering drawings (P&ID).">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230D2137'/><text x='50' y='70' font-size='56' text-anchor='middle' fill='%23FF8E2B' font-family='monospace' font-weight='700'>AA</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ice:#E0EAF5;--blue:#2E77AE;--navy:#0D2137;--or:#FF8E2B;--deep:color-mix(in srgb,var(--navy) 80%,#000);--line:color-mix(in srgb,var(--blue) 32%,transparent);--mut:color-mix(in srgb,var(--ice) 70%,var(--navy));--mono:Inter,system-ui,sans-serif;--disp:"Space Grotesk",Inter,system-ui,sans-serif;--code:"JetBrains Mono",ui-monospace,monospace}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--ice);font:400 1rem/1.65 Inter,system-ui,sans-serif;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:72px 72px;background-attachment:fixed;overflow-x:clip}
+a{color:inherit}:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+.wrap{width:min(1100px,100% - 2.5rem);margin-inline:auto}
+h2{font:700 clamp(1.7rem,4vw,2.8rem)/1.05 var(--disp);letter-spacing:-.02em;margin-bottom:.8rem}
+h3{font:600 1.15rem Inter,sans-serif}
+.sub{color:var(--mut);margin-bottom:1.2rem;max-width:46ch}
+#bar{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--or);transform:scaleX(0);transform-origin:0;z-index:30}
+
+.nav{position:fixed;top:14px;left:50%;translate:-50% 0;z-index:20;width:min(1100px,100% - 1.5rem);display:flex;align-items:center;gap:1rem;padding:.7rem 1.1rem;background:color-mix(in srgb,var(--navy) 78%,transparent);backdrop-filter:blur(12px);border:1px solid var(--line)}
+.logo{font:700 1.3rem var(--disp);text-decoration:none}.logo i{color:var(--or);font-style:normal}
+.nav nav{margin-left:auto;display:flex;gap:1.5rem}
+.nav nav a{font:500 .78rem var(--mono);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--mut)}
+.nav nav a:hover,.nav nav a.on{color:var(--or)}
+.badge{display:inline-flex;align-items:center;gap:.6rem;padding:.4rem .9rem;border:1px solid var(--or);color:var(--or);font:500 .74rem var(--mono);letter-spacing:.12em;text-transform:uppercase;background:color-mix(in srgb,var(--or) 8%,transparent)}
+.badge.sm{padding:.25rem .7rem;border-radius:99px;font-size:.66rem}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--or);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.side{position:fixed;right:0;top:50%;translate:0 -50%;z-index:20;writing-mode:vertical-rl;rotate:180deg;padding:1.4rem .7rem;border:1px solid var(--line);background:var(--navy);font:500 .72rem var(--mono);letter-spacing:.25em;text-transform:uppercase;text-decoration:none;color:var(--mut)}
+.side:hover{color:var(--or);border-color:var(--or)}
+
+.btn{display:inline-block;padding:.8rem 1.4rem;border:1px solid var(--blue);background:transparent;color:var(--ice);font:500 .82rem var(--mono);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn:hover{background:var(--blue)}
+.btn.primary{border-color:var(--or);color:var(--or)}.btn.primary:hover{background:var(--or);color:var(--navy)}
+.cta{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
+
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;padding:7rem 1.2rem 5rem;overflow:hidden}
+#net{position:absolute;inset:0;width:100%;height:100%}
+.hero .in{position:relative;z-index:1;transform:translateY(calc(var(--hs,0)*-90px));opacity:calc(1 - var(--hs,0)*1.2)}
+h1{font:700 clamp(2.8rem,13vw,9rem)/.95 var(--disp);text-transform:uppercase;margin:1.5rem 0 1.3rem;letter-spacing:calc(-.03em + var(--hs,0)*.12em)}
+h1 .w{display:block;overflow:hidden;padding-top:.04em}
+.l{display:inline-block;font-style:normal;transform:translateY(105%);animation:up .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*45ms)}
+@keyframes up{to{transform:none}}
+.px{font:600 clamp(1.5rem,4vw,2.8rem)/1.2 var(--disp);letter-spacing:-.01em;color:var(--or)}
+.px em{font-style:normal;color:var(--ice)}
+.roles{margin:1.4rem 0 2rem;font:400 .95rem var(--mono);color:var(--mut)}
+#role{color:var(--ice)}
+.caret{display:inline-block;width:.55em;height:1.1em;margin-left:3px;background:var(--or);vertical-align:-.2em;animation:pulse 1s steps(1) infinite}
+.scroll{position:absolute;bottom:1.4rem;left:50%;translate:-50% 0;font:400 .7rem var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--mut);opacity:calc(1 - var(--hs,0)*4)}
+.scroll::after{content:"";display:block;width:1px;height:36px;margin:.5rem auto 0;background:var(--or);animation:drop 1.8s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+.mq{border-block:1px solid var(--line);background:var(--deep);overflow:hidden;padding:.5rem 0}
+.mq div{display:flex;width:max-content;font:500 1.05rem var(--mono);white-space:nowrap;padding:.35rem 0}
+.mq div:nth-child(2){color:var(--blue)}
+.mq span{padding-right:2.2rem}.mq span::before{content:"+";color:var(--or);margin-right:.8rem}
+
+.pin{height:450vh;position:relative}
+.stick{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:1.25fr 1fr;gap:2.5rem;align-items:center;padding:5.5rem clamp(1rem,4vw,3rem) 2rem;max-width:1320px;margin:auto}
+.view{position:relative;border:1px solid var(--blue);background:var(--deep)}
+.vl{position:absolute;left:.8rem;top:.6rem;font:500 .7rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--or)}
+#pid{display:block;width:100%;height:auto}
+#art{transition:filter .15s}
+#pid .pipe path{fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round}
+#pid .eq{fill:none;stroke:var(--ice);stroke-width:2;stroke-linejoin:round}
+#pid text{fill:var(--ice);font:500 12px var(--mono)}
+#scan{stroke:var(--or);stroke-width:1.5;opacity:.7}
+.ob{fill:none;stroke:var(--blue);stroke-width:1.5;stroke-dasharray:3 2}
+.sb rect.b{fill:color-mix(in srgb,var(--or) 10%,transparent);stroke:var(--or);stroke-width:1.5}
+.sb rect.t{fill:var(--or)}
+#pid .sb text{fill:var(--navy);font:700 10px Inter,sans-serif}
+.ck circle{fill:var(--navy);stroke:var(--ice)}.ck text{font-size:11px!important}
+.ck.f circle{fill:var(--or);stroke:var(--or)}.ck.f text{fill:var(--navy)!important}
+.steps{list-style:none;padding:0;margin-bottom:1rem;border-left:1px solid var(--line)}
+.steps li{padding:.35rem 0 .35rem 1rem;margin-left:-1px;border-left:2px solid transparent;color:var(--mut);font:500 .85rem var(--mono);text-transform:uppercase;letter-spacing:.08em;transition:color .2s}
+.steps li p{display:none;margin-top:.2rem;font:400 .95rem/1.5 Inter,sans-serif;text-transform:none;letter-spacing:0}
+.steps li.on{color:var(--or);border-color:var(--or)}.steps li.on p{display:block;color:var(--ice)}
+.steps li.done{color:var(--ice)}
+.code{min-height:11.5em;padding:1rem;background:var(--deep);border:1px solid var(--line);font:.78rem/1.6 var(--code);color:var(--ice);overflow:hidden}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;padding-block:5rem}
+.stats div{border-top:2px solid var(--or);padding-top:1rem}
+.stats b{display:block;font:700 clamp(2.6rem,6vw,4.4rem)/1.05 var(--disp);letter-spacing:-.02em}
+.stats span{color:var(--mut)}
+
+#work{padding-block:3rem 4rem}
+.stack{margin-top:2rem}
+.xp{position:sticky;top:calc(6.2rem + var(--n)*20px);margin-bottom:12vh;padding:1.8rem;background:var(--deep);border:1px solid var(--line);border-top:2px solid var(--or)}
+.when{font:500 .75rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--or);margin-bottom:.4rem}
+.co{color:var(--mut);margin-bottom:.8rem}
+.xp ul{padding-left:1.1rem;display:grid;gap:.45rem;color:var(--mut);max-width:70ch}
+.link{display:inline-block;margin-top:1rem;color:var(--or);font:500 .82rem var(--mono);letter-spacing:.1em;text-transform:uppercase}
+
+.contact{text-align:center;padding-block:5rem 6rem}
+.big{font-size:clamp(2rem,6.5vw,4.8rem);max-width:16ch;margin:0 auto 2rem;line-height:1}
+.foot{padding:1.6rem;text-align:center;border-top:1px solid var(--line);color:var(--mut);font:400 .85rem var(--mono)}
+
+@media(max-width:820px){.stick{grid-template-columns:1fr;gap:1rem;align-content:center}.code{display:none}.stats{grid-template-columns:1fr}.nav nav a:not(:last-child){display:none}.side{display:none}.xp{top:5.5rem}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.l{transform:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<header class="nav">
+  <a class="logo" href="#top">AA<i>.</i></a>
+  <span class="badge sm"><b class="dot"></b>Open to work</span>
+  <nav aria-label="Main"><a href="#top">Home</a><a href="#pipeline">Pipeline</a><a href="#work">Work</a><a href="#contact">Contact</a></nav>
+</header>
+<a class="side" href="#contact">Contact</a>
+
+<main>
+<section class="hero" id="top">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="in">
+    <span class="badge"><b class="dot"></b>Open for AI engineering roles</span>
+    <h1 aria-label="Abhishek Agrahari"><span class="w" aria-hidden="true">ABHISHEK</span><span class="w" aria-hidden="true">AGRAHARI</span></h1>
+    <p class="px">I teach machines<br><em>to read blueprints.</em></p>
+    <p class="roles">AI Engineer &nbsp;/&nbsp; <span id="role"></span><u class="caret"></u></p>
+    <div class="cta"><a class="btn primary" href="#pipeline">See the pipeline</a><a class="btn" href="resume.pdf" download>Resume</a></div>
+  </div>
+  <span class="scroll">scroll</span>
+</section>
+
+<div class="mq" aria-hidden="true"><div></div><div></div></div>
+
+<section id="pipeline" class="pin">
+  <div class="stick">
+    <div class="view">
+      <span id="vl" class="vl">stage 1/5</span>
+      <svg id="pid" viewBox="0 0 600 400" role="img" aria-label="A P&ID drawing being processed: OCR, symbol detection, validation and export, driven by scrolling.">
+        <g id="art">
+          <g class="pipe"><path d="M90 175H166M214 175H260M300 175H350M390 175H450M510 175H580M320 106V175"/></g>
+          <g class="det" data-l="Vessel" data-c="0.98"><rect x="30" y="110" width="60" height="130" rx="22" class="eq"/></g>
+          <g class="det" data-l="Pump" data-c="0.97"><circle cx="190" cy="175" r="24" class="eq"/><path d="M178 190l12-30 12 30z" class="eq"/></g>
+          <g class="det" data-l="Gate valve" data-c="0.99"><path d="M260 160v30l40-30v30z" class="eq"/></g>
+          <g class="det" data-l="Control valve" data-c="0.95" data-flag="1"><path d="M350 160v30l40-30v30z" class="eq"/><path d="M370 175V145M356 145a14 14 0 0 1 28 0z" class="eq"/></g>
+          <g class="det" data-l="Instrument" data-c="0.96"><circle cx="320" cy="90" r="16" class="eq"/></g>
+          <g class="det" data-l="Exchanger" data-c="0.94"><circle cx="480" cy="175" r="30" class="eq"/><path d="M458 175l11-14 11 28 11-28 11 14" class="eq"/></g>
+          <text class="tg" x="60" y="262" text-anchor="middle">V-101</text>
+          <text class="tg" x="190" y="226" text-anchor="middle">P-102</text>
+          <text class="tg" x="370" y="214" text-anchor="middle">FCV-201</text>
+          <text class="tg" x="320" y="94" text-anchor="middle">FT</text>
+          <text class="tg" x="480" y="228" text-anchor="middle">E-103</text>
+          <text class="tg" x="150" y="310">6"-PL-1042-A1A</text>
+        </g>
+        <g id="ocr"></g><g id="sym"></g><g id="chk"></g>
+        <line id="scan" y1="0" y2="400"/>
+      </svg>
+    </div>
+    <div class="side-info">
+      <h2 data-s="From drawing to data">From drawing to data</h2>
+      <p class="sub">Keep scrolling. The drawing moves through each stage of my pipeline.</p>
+      <ol id="steps" class="steps"></ol>
+      <pre id="code" class="code" aria-label="Example JSON output"></pre>
+    </div>
+  </div>
+</section>
+
+<section class="wrap stats" aria-label="Results">
+  <div><b data-to="30" data-pre="20–" data-suf="%">0</b><span>better symbol detection from OCR tuning and template matching</span></div>
+  <div><b data-to="40" data-pre="&gt;" data-suf="%">0</b><span>less manual engineering effort on P&amp;ID review</span></div>
+  <div><b data-to="1000" data-pre="" data-suf="+">0</b><span>drawings turned into structured CSV and JSON</span></div>
+</section>
+
+<section id="work" class="wrap">
+  <h2 data-s="Experience and background">Experience and background</h2>
+  <div class="stack">
+    <article class="xp" style="--n:0">
+      <p class="when">Nov 2025 – present</p>
+      <h3>AI Engineer, full time</h3><p class="co">Pipetech AI Technologies (formerly Chemtech AI Technologies)</p>
+      <ul><li>Built and tuned computer vision pipelines in Python, OpenCV, EasyOCR and NumPy to extract equipment tags, valve symbols, line numbers and annotations from P&amp;ID drawings.</li>
+      <li>Combined rule-based validation with ML-based reasoning to verify valves, piping and instruments.</li>
+      <li>Raised symbol detection accuracy by 20–30% and cut manual review effort by over 40%.</li>
+      <li>Processed 1000+ drawings into structured CSV and JSON.</li></ul>
+    </article>
+    <article class="xp" style="--n:1">
+      <p class="when">Aug 2025 – Nov 2025</p>
+      <h3>AI Engineering</h3><p class="co">Chemtech AI Technologies</p>
+      <ul><li>Built computer vision pipelines with Python, OpenCV, EasyOCR, NumPy and Roboflow for P&amp;ID data extraction.</li>
+      <li>Annotated datasets, cleaned data in Excel and generated structured CSV and JSON.</li></ul>
+    </article>
+    <article class="xp" style="--n:2">
+      <p class="when">Project</p>
+      <h3>Cafe management and billing system</h3><p class="co">Python</p>
+      <ul><li>Console app for choosing menu items and calculating bills, with order validation on a dictionary-based menu.</li>
+      <li>Simulated UPI Scan &amp; Pay confirmation before the final bill prints.</li></ul>
+      <a class="link" href="https://github.com/ABHISHEK4047F-10" target="_blank" rel="noopener">View on GitHub</a>
+    </article>
+    <article class="xp" style="--n:3">
+      <p class="when">Education</p>
+      <h3>Diploma in Data Science, I TECH Thane</h3><p class="co">2023 – 2025. Grade A</p>
+      <ul><li>B.Com, Kamladevi College, Vitthalwadi, Kalyan. 2020 – 2023. CGPA 8.1 / 10.</li>
+      <li>Certifications: Advanced Excel, MySQL, Power BI, Python.</li></ul>
+    </article>
+  </div>
+</section>
+
+<section id="contact" class="wrap contact">
+  <h2 class="big" data-s="Got a drawing that needs reading?">Got a drawing that needs reading?</h2>
+  <div class="cta">
+    <a class="btn primary" id="mail" href="#">Email me</a>
+    <a class="btn" href="tel:+919795507019">+91 97955 07019</a>
+    <a class="btn" href="https://github.com/ABHISHEK4047F-10" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="https://www.linkedin.com/in/abhishek-kumar-agrahari" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</section>
+</main>
+<footer class="foot">© 2026 Abhishek Kumar Agrahari</footer>
+<script>
+// ---- Edit this ----
+const CONFIG = { email: "your-email@example.com" }; // replace with your real email
+// -------------------
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+$("#mail").href = "mailto:" + CONFIG.email;
+
+/* Name letters */
+$$("h1 .w").forEach((w, k) => w.innerHTML = [...w.textContent].map((c, i) => `<i class="l" style="--i:${i + k * 6}">${c}</i>`).join(""));
+
+/* Typed roles */
+const roles = ["computer vision", "OCR pipelines", "P&ID automation", "rule-based validation"], rt = $("#role");
+let ri = 0, ci = 0, del = false;
+(function type() {
+  if (RM) return rt.textContent = roles[0];
+  const w = roles[ri]; ci += del ? -1 : 1; rt.textContent = w.slice(0, ci);
+  let d = del ? 30 : 65;
+  if (!del && ci === w.length) { del = true; d = 1400; } else if (del && ci === 0) { del = false; ri = (ri + 1) % roles.length; d = 300; }
+  setTimeout(type, d);
+})();
+
+/* Neural network canvas */
+const cv = $("#net"), cx = cv.getContext("2d"), hero = $(".hero");
+let W, H, N = [], m = { x: -999, y: -999 }, heroVis = true;
+function size() {
+  const r = cv.getBoundingClientRect(), d = devicePixelRatio || 1;
+  W = r.width; H = r.height; cv.width = W * d; cv.height = H * d; cx.setTransform(d, 0, 0, d, 0, 0);
+  N = Array.from({ length: Math.round(W * H / 14000) }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35 }));
+}
+hero.addEventListener("pointermove", e => { const r = cv.getBoundingClientRect(); m.x = e.clientX - r.left; m.y = e.clientY - r.top; });
+hero.addEventListener("pointerleave", () => m.x = -999);
+new IntersectionObserver(e => heroVis = e[0].isIntersecting).observe(hero);
+addEventListener("resize", size); size();
+function net() {
+  cx.clearRect(0, 0, W, H);
+  for (const a of N) {
+    if (!RM) { a.x += a.vx; a.y += a.vy; if (a.x < 0 || a.x > W) a.vx *= -1; if (a.y < 0 || a.y > H) a.vy *= -1; }
+    a.dm = Math.hypot(a.x - m.x, a.y - m.y);
+  }
+  for (let i = 0; i < N.length; i++) {
+    const a = N[i];
+    for (let j = i + 1; j < N.length; j++) {
+      const b = N[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < 130) { cx.strokeStyle = `rgba(46,119,174,${(1 - d / 130) * .55})`; cx.beginPath(); cx.moveTo(a.x, a.y); cx.lineTo(b.x, b.y); cx.stroke(); }
+    }
+    if (a.dm < 180) { cx.strokeStyle = `rgba(255,142,43,${(1 - a.dm / 180) * .9})`; cx.beginPath(); cx.moveTo(a.x, a.y); cx.lineTo(m.x, m.y); cx.stroke(); }
+    cx.fillStyle = a.dm < 180 ? "#FF8E2B" : "#E0EAF5"; cx.globalAlpha = a.dm < 180 ? 1 : .6;
+    cx.beginPath(); cx.arc(a.x, a.y, a.dm < 180 ? 3 : 2, 0, 7); cx.fill(); cx.globalAlpha = 1;
+  }
+}
+
+/* Skill marquee */
+const skills = ["Python", "TensorFlow", "NumPy", "OpenCV", "EasyOCR", "OCR pipelines", "Template matching", "Image processing", "Roboflow", "Dataset preparation", "Rule-based validation", "CSV / JSON", "Data cleaning", "Git", "GitHub", "Excel"];
+const rows = $$(".mq div"), off = [0, 0];
+rows.forEach((r, k) => { const a = skills.slice(k * 8, k * 8 + 8).map(s => `<span>${s}</span>`).join(""); r.innerHTML = a + a + a + a; });
+
+/* Pinned pipeline */
+const NS = "http://www.w3.org/2000/svg";
+const mk = (n, a, p) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); p && p.append(e); return e; };
+const ocr = $("#ocr"), sym = $("#sym"), chk = $("#chk"), art = $("#art"), scan = $("#scan");
+const ocrB = $$(".tg").map(t => { const b = t.getBBox(); return mk("rect", { class: "ob", x: b.x - 4, y: b.y - 2, width: b.width + 8, height: b.height + 4 }, ocr); });
+const symB = $$(".det").map(d => {
+  const b = d.getBBox(), x = b.x - 7, y = b.y - 7, w = b.width + 14, h = b.height + 14, g = mk("g", { class: "sb" }, sym);
+  const lab = `${d.dataset.l} ${d.dataset.c}`, lw = lab.length * 5.6 + 10;
+  mk("rect", { class: "b", x, y, width: w, height: h }, g); mk("rect", { class: "t", x, y: y - 15, width: lw, height: 15 }, g);
+  mk("text", { x: x + 5, y: y - 4 }, g).textContent = lab;
+  const c = mk("g", { class: "ck" + (d.dataset.flag ? " f" : "") }, chk);
+  mk("circle", { cx: x + w, cy: y + h, r: 9 }, c);
+  mk("text", { x: x + w, y: y + h + 4, "text-anchor": "middle" }, c).textContent = d.dataset.flag ? "!" : "✓";
+  return g;
+});
+const chkB = $$("#chk .ck");
+const stages = [
+  ["Ingest", "The drawing is cleaned, deskewed and tiled so small symbols survive.", 0],
+  ["Read text (OCR)", "EasyOCR reads tags, line numbers and notes. Tuning fixes mix-ups like 0 and O.", .2],
+  ["Detect symbols", "Template matching and trained detectors find valves, pumps and instruments.", .45],
+  ["Validate", "Rules and ML reasoning check each item. Mismatches get flagged for an engineer.", .7],
+  ["Export", "Clean CSV and JSON, ready for review tools and databases.", .9]
+];
+const steps = $("#steps"), code = $("#code");
+steps.innerHTML = stages.map(s => `<li><span>${s[0]}</span><p>${s[1]}</p></li>`).join("");
+const lines = ['{', '  "drawing": "PID-1042.pdf",', '  "tags": ["V-101", "P-102", "FCV-201", "E-103"],', '  "line": "6\\"-PL-1042-A1A",', '  "symbols": 6,', '  "checks": { "passed": 5, "flagged": 1 },', '  "flag": "FCV-201: no bypass line",', '  "status": "ready for review"', '}'];
+const pin = $("#pipeline"), vl = $("#vl");
+let curStage = -1, curLines = -1;
+function pipe() {
+  const r = pin.getBoundingClientRect(), p = clamp(-r.top / (r.height - innerHeight));
+  const a0 = clamp(p / .2);
+  art.style.opacity = .3 + .7 * a0; art.style.filter = `blur(${(1 - a0) * 3}px)`;
+  ocrB.forEach((e, i) => e.style.opacity = clamp((p - .2 - i * .02) / .04));
+  symB.forEach((e, i) => e.style.opacity = clamp((p - .45 - i * .03) / .04));
+  chkB.forEach((e, i) => e.style.opacity = clamp((p - .7 - i * .025) / .04));
+  scan.setAttribute("x1", (p * 5 % 1) * 600); scan.setAttribute("x2", (p * 5 % 1) * 600);
+  scan.style.opacity = p > .02 && p < .98 ? .7 : 0;
+  const s = p < .2 ? 0 : p < .45 ? 1 : p < .7 ? 2 : p < .9 ? 3 : 4;
+  if (s !== curStage) {
+    curStage = s;
+    $$("li", steps).forEach((li, i) => { li.className = i === s ? "on" : i < s ? "done" : ""; });
+    vl.textContent = `stage ${s + 1}/5: ${stages[s][0]}`;
+  }
+  const n = Math.round(clamp((p - .45) / .5) * lines.length);
+  if (n !== curLines) { curLines = n; code.textContent = lines.slice(0, n).join("\n"); }
+}
+
+/* Main scroll loop */
+const bar = $("#bar");
+let last = scrollY, vel = 0;
+function loop() {
+  const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+  vel += ((y - last) - vel) * .12; last = y;
+  bar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+  hero.style.setProperty("--hs", clamp(y / (innerHeight * .8)).toFixed(3));
+  rows.forEach((r, k) => {
+    off[k] += RM ? 0 : .6 + Math.abs(vel) * .6;
+    const half = r.scrollWidth / 4, o = off[k] % half;
+    r.style.transform = `translateX(${k ? o - half : -o}px)`;
+  });
+  if (heroVis) net();
+  pipe();
+  requestAnimationFrame(loop);
+}
+loop();
+
+/* Counters, text scramble, active nav */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return; io.unobserve(e.target);
+  const el = e.target, to = +el.dataset.to, t0 = performance.now();
+  const tick = t => { const k = RM ? 1 : Math.min((t - t0) / 1300, 1); el.textContent = el.dataset.pre + Math.round(to * (1 - Math.pow(1 - k, 3))) + el.dataset.suf; if (k < 1) requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+}), { threshold: .6 });
+$$("[data-to]").forEach(el => { el.textContent = el.dataset.pre + "0" + el.dataset.suf; io.observe(el); });
+const so = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return; so.unobserve(e.target);
+  const el = e.target, t = el.dataset.s; if (RM) return; let f = 0;
+  const id = setInterval(() => { el.textContent = [...t].map((c, i) => c === " " || i < f / 2 ? c : "01#/<>_"[Math.random() * 7 | 0]).join(""); if (++f > t.length * 2) { el.textContent = t; clearInterval(id); } }, 28);
+}), { threshold: .8 });
+$$("[data-s]").forEach(el => so.observe(el));
+const links = $$(".nav nav a");
+const no = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) links.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id));
+}), { rootMargin: "-45% 0px -50% 0px" });
+$$("main section[id]").forEach(s => no.observe(s));
+</script>
+</body>
+</html>
